@@ -11,13 +11,12 @@ def add_qtde_lotes_field(layer, field_name="RU_Qtde"):
         layer.updateFields()
     return layer.fields().names().index(field_name)
 
-def run_qtde_lotes(metros, use_centroid=False):
+def run_qtde_lotes(metros, layer=qgis.utils.iface.activeLayer(), use_centroid=False):
     """ Calcula a quantidade de lotes que estão a um raio de <metros> metros 
     de cada lote, armazena num campo da tabela de atributos e retorna uma lista """
 
     inicio = timer()
     field_name = "{}m".format(str(metros))
-    layer = qgis.utils.iface.activeLayer()
     index = add_qtde_lotes_field(layer, field_name)
     layer_provider = layer.dataProvider()
     value = []
@@ -45,5 +44,5 @@ def run_qtde_lotes(metros, use_centroid=False):
             layer_provider.changeAttributeValues({f.id():{index: a}})
     layer.commitChanges()
     elapsed = timer() - inicio
-    print("Cálculo efetuado com sucesso para {} lotes em {} segundos.".format(numero, round(elapsed, 4)))
+    print("Cálculo efetuado com sucesso em {} segundos.".format(round(elapsed, 4)))
     return value

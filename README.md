@@ -16,4 +16,4 @@ Função que calcula a quantidade de lotes que estão a um raio de <metros> metr
 `run_qtde_lotes(500)`
 
 1. Calcular considerando um buffer de 400 metros, utilizando a camada ativa e os centróides dos lotes:
-`run_qtde_lotes(500, use_centroid=True)`
+`run_qtde_lotes(400, use_centroid=True)`
